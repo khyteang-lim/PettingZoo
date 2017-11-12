@@ -9,9 +9,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.limsanity.firstapp.API.AlertService;
@@ -150,6 +152,15 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
                     .setText(list.get(position).description);
             ((TextView)holder.itemView.findViewById(R.id.alertDateTV))
                     .setText(list.get(position).date);
+            (holder.itemView.findViewById(R.id.threeBotsIB)).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    PopupMenu popup = new PopupMenu(mContext, view);
+                    MenuInflater inflater = popup.getMenuInflater();
+                    inflater.inflate(R.menu.alert_popup, popup.getMenu());
+                    popup.show();
+                }
+            });
             // If the alert is completed, mark it with a checkmark
             if(!list.get(position).status.equals("Active")) {
                 ((ImageView)holder.itemView.findViewById(R.id.alertDateTV))
