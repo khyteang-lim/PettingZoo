@@ -17,11 +17,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    AlertService alertService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +44,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Make the Services
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        alertService = new AlertService(requestQueue);
 
         // Show the AlertFragment
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AlertFragment fragment = AlertFragment.newInstance();
+        AlertFragment fragment = AlertFragment.newInstance(alertService);
         fragmentTransaction.add(R.id.main_fragment, fragment);
         fragmentTransaction.commit();
     }
