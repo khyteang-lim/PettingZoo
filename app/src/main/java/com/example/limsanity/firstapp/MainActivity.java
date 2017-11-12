@@ -21,13 +21,22 @@ import android.view.Window;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.limsanity.firstapp.API.AlertService;
+import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
+import com.example.limsanity.firstapp.Fragments.ProductFragment;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Services
     AlertService alertService;
+    ProductService productService;
+
+    // Fragments
+    AlertFragment alertFragment;
+    ProductFragment productFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +63,17 @@ public class MainActivity extends AppCompatActivity
         // Make the Services
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         alertService = new AlertService(requestQueue);
+        productService = new ProductService(requestQueue);
+
+        // Instantiate the fragments
+        alertFragment = AlertFragment.newInstance(alertService);
+        productFragment = ProductFragment.newInstance(productService);
 
         // Show the AlertFragment
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        AlertFragment fragment = AlertFragment.newInstance(alertService);
-        fragmentTransaction.add(R.id.fragment_container, fragment);
+
+        fragmentTransaction.add(R.id.fragment_container, alertFragment);
         fragmentTransaction.commit();
     }
 
@@ -78,6 +92,26 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        if(id == R.id.alerts) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(fragmentManager.findFragmentByTag(alertFragment.getClass().getName()) != null) {
+                fragmentTransaction.remove(alertFragment);
+            }
+            alertFragment = AlertFragment.newInstance(alertService);
+            fragmentTransaction.add(R.id.fragment_container, alertFragment);
+            fragmentTransaction.commit();
+        } else if(id == R.id.products){
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(fragmentManager.findFragmentByTag(productFragment.getClass().getName()) != null) {
+                fragmentTransaction.remove(productFragment);
+            }
+            productFragment = ProductFragment.newInstance(productService);
+            fragmentTransaction.add(R.id.fragment_container, productFragment);
+            fragmentTransaction.commit();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
