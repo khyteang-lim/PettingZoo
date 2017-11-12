@@ -20,7 +20,7 @@
         android:layout_marginLeft="20dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/alertGroupList"
+        android:id="@+id/alert_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
