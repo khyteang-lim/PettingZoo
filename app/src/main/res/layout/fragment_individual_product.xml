@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitStart"
         android:adjustViewBounds="true"
-        android:src="@drawable/LightChart_3x"
+        android:src="@drawable/light_chart_3x"
         app:layout_constraintBottom_toTopOf="@+id/individualProductBottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -143,7 +143,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/createdByLL"
             app:layout_constraintLeft_toLeftOf="@id/createdByLL"
-            app:layout_constraintRight_toRightOf=""
             android:orientation="vertical"
             android:layout_marginTop="10dp"
             >
