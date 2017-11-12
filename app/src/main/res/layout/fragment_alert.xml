@@ -22,7 +22,8 @@
             android:layout_gravity="left"
             android:layout_weight="1"
             android:gravity="left|center"
-            android:text="CheckBox"
+            android:text="Select All"
+            android:textColor="#889297"
             android:layout_marginLeft="15dp"/>
 
         <TextView
