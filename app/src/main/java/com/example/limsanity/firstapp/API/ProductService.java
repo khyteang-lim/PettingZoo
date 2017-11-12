@@ -40,7 +40,7 @@ public class ProductService {
     public class Product {
         public String name;
         public String buildingNo;
-        public List<Fixture> Fixtures;
+        public List<Fixture> fixtures;
     }
 
     public class Fixture {

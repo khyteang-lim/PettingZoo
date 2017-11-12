@@ -101,7 +101,15 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         @Override
         public void onBindViewHolder(ProductHolder holder, int position) {
             RecyclerView fixture_list = holder.itemView.findViewById(R.id.product_group_list);
-            final FixtureAdapter adapter = new FixtureAdapter(list.get(position).Fixtures);
+            // Set the title of product
+            ((TextView)holder.itemView
+                    .findViewById(R.id.productName)).setText(list.get(position).name);
+            ((TextView)holder.itemView
+                    .findViewById(R.id.productNumber))
+                    .setText(("Building No: " + list.get(position).buildingNo));
+
+            // Set the list of fixtures recycler view
+            final FixtureAdapter adapter = new FixtureAdapter(list.get(position).fixtures);
             fixture_list.setAdapter(adapter);
             LinearLayoutManager lm = new LinearLayoutManager(mContext);
             lm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -132,6 +140,13 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
 
         @Override
         public void onBindViewHolder(FixtureHolder holder, int position) {
+            // Set the details of the fixture
+            ((TextView)holder.itemView
+                    .findViewById(R.id.productId)).setText(("Fixture: " + list.get(position).id));
+            ((TextView)holder.itemView
+                    .findViewById(R.id.productLocation)).setText(("Location: " + list.get(position).location));
+            ((TextView)holder.itemView
+                    .findViewById(R.id.productStatus)).setText(("Status: " + list.get(position).status));
 
         }
 
