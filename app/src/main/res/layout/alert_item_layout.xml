@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="#CA3B3D"
-        android:layout_marginBottom="2dp"/>
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/alertSelectedCB"

@@ -27,7 +27,7 @@ import java.util.Locale;
  */
 
 public class AlertService {
-    private static final String ENDPOINT = "http://10.0.2.2:3000/alerts";
+    private static final String ENDPOINT = "http://10.209.91.48:3000/alerts";
 
     private RequestQueue requestQueue;
 
@@ -36,11 +36,11 @@ public class AlertService {
     }
 
     public class Alert {
-        String name;
-        String status;
+        public String name;
+        public String status;
         boolean selected;
-        String description;
-        String date;
+        public String description;
+        public String date;
     }
 
     public void getAlerts(final OnGetAlerts callback, final Date[] dateGroups) {
@@ -77,7 +77,7 @@ public class AlertService {
         List<Alert> currGroup = new ArrayList<>();
 
         // Loop through and group by groupTime
-        Date startTime = new Date(posts.get(0).date);
+        Date startTime = parseDate(posts.get(0).date);
         for (Alert alert : posts) {
             assert startTime != null;
             Date alertTime = parseDate(alert.date);
@@ -97,7 +97,7 @@ public class AlertService {
         return groups;
     }
 
-    private Date parseDate(String date) {
+    public static Date parseDate(String date) {
         SimpleDateFormat parser =
                 new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss a", Locale.ENGLISH);
         try {
