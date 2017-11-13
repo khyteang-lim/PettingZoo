@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/alertSelectTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cluster Prism selected"
+        android:padding="10dp"
+        android:textSize="10dp"
+        android:background="@drawable/border"/>
+
+    <LinearLayout
+        android:id="@+id/ackAlertLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/alertSelectTV"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alertAckIV"
+            android:src="@drawable/ic_check_black_24dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Acknowledge"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addNoteAlertLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ackAlertLL"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alertAddNoteIV"
+            android:src="@drawable/ic_content_paste_gray_24dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Add Note"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/deleteAlertLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/addNoteAlertLL"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alertDeleteIV"
+            android:src="@drawable/ic_delete_gray_24dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Delete"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
