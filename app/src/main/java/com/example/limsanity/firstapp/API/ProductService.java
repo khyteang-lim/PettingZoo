@@ -9,13 +9,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Product has the format:
@@ -29,7 +24,7 @@ import java.util.Locale;
  */
 
 public class ProductService {
-    private static final String ENDPOINT = "http://192.168.1.7:3000/products";
+    private static final String ENDPOINT = "http://192.168.1.23:3000/products";
 
     private RequestQueue requestQueue;
 

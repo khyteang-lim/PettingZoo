@@ -1,7 +1,6 @@
 package com.example.limsanity.firstapp;
 
 import android.content.Intent;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.submitBtn) void submitLogin(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
-        EditText username = (EditText) findViewById(R.id.usernameTV);
-        EditText password = (EditText) findViewById(R.id.passwordTV);
+        EditText username = findViewById(R.id.usernameTV);
+        EditText password = findViewById(R.id.passwordTV);
         String message = username.getText().toString();
         intent.putExtra(Intent.EXTRA_TEXT, message);
         startActivity(intent);

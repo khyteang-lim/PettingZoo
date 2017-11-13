@@ -1,28 +1,21 @@
 package com.example.limsanity.firstapp.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ProductFragment extends Fragment implements ProductService.OnGetProducts {
     Context mContext;
@@ -31,13 +24,16 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
 
     View currentView;
 
+    ProductFragmentInterface callback;
+
     public ProductFragment() {
         // Required empty public constructor
     }
 
-    public static ProductFragment newInstance(ProductService service) {
+    public static ProductFragment newInstance(ProductService service, ProductFragmentInterface callback) {
         ProductFragment fragment = new ProductFragment();
         fragment.productService = service;
+        fragment.callback = callback;
         return fragment;
     }
 
@@ -99,7 +95,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         }
 
         @Override
-        public void onBindViewHolder(ProductHolder holder, int position) {
+        public void onBindViewHolder(final ProductHolder holder, int position) {
             RecyclerView fixture_list = holder.itemView.findViewById(R.id.product_group_list);
             // Set the title of product
             ((TextView)holder.itemView
@@ -107,6 +103,13 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
             ((TextView)holder.itemView
                     .findViewById(R.id.productNumber))
                     .setText(("Building No: " + list.get(position).buildingNo));
+
+            holder.itemView.findViewById(R.id.productThreeDots).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onProductMenu(list.get(holder.getAdapterPosition()));
+                }
+            });
 
             // Set the list of fixtures recycler view
             final FixtureAdapter adapter = new FixtureAdapter(list.get(position).fixtures);
@@ -139,7 +142,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         }
 
         @Override
-        public void onBindViewHolder(FixtureHolder holder, int position) {
+        public void onBindViewHolder(final FixtureHolder holder, final int position) {
             // Set the details of the fixture
             ((TextView)holder.itemView
                     .findViewById(R.id.productId)).setText(("Fixture: " + list.get(position).id));
@@ -147,6 +150,14 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
                     .findViewById(R.id.productLocation)).setText(("Location: " + list.get(position).location));
             ((TextView)holder.itemView
                     .findViewById(R.id.productStatus)).setText(("Status: " + list.get(position).status));
+
+            holder.itemView
+                    .findViewById(R.id.threeBotsIB).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onFixtureClicked(list.get(holder.getAdapterPosition()));
+                }
+            });
 
         }
 
@@ -166,5 +177,10 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         FixtureHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    public interface ProductFragmentInterface {
+        void onFixtureClicked(ProductService.Fixture fixture);
+        void onProductMenu(ProductService.Product product);
     }
 }

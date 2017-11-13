@@ -1,7 +1,6 @@
 package com.example.limsanity.firstapp.Fragments;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,19 +8,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.R;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,13 +30,16 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     View currentView;
 
+    AlertCallback callback;
+
     public AlertFragment() {
         // Required empty public constructowr
     }
 
-    public static AlertFragment newInstance(AlertService service) {
+    public static AlertFragment newInstance(AlertService service, AlertCallback callback) {
         AlertFragment fragment = new AlertFragment();
         fragment.alertService = service;
+        fragment.callback = callback;
         return fragment;
     }
 
@@ -193,5 +190,9 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         AlertHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    interface AlertCallback {
+        void onAlertOptions(AlertService.Alert alert);
     }
 }
