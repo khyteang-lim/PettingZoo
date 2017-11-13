@@ -18,16 +18,17 @@ import com.android.volley.toolbox.Volley;
 import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.API.SettingsService;
+import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
 import com.example.limsanity.firstapp.Fragments.ConnectedDeviceFragment;
 import com.example.limsanity.firstapp.Fragments.IndividualProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
-import com.example.limsanity.firstapp.Fragments.ProductSelectedOptionsFragment;
+import com.example.limsanity.firstapp.Fragments.ProductOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback {
 
     // Services
     AlertService alertService;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity
             if(alertFragment != null && fragmentManager.findFragmentByTag(AlertFragment.class.getName()) != null) {
                 fragmentTransaction.remove(alertFragment);
             }
-            alertFragment = AlertFragment.newInstance(alertService);
+            alertFragment = AlertFragment.newInstance(alertService, this);
             currentFragment = alertFragment;
             fragmentTransaction.add(R.id.fragment_container, alertFragment);
             fragmentTransaction.commit();
@@ -163,7 +164,17 @@ public class MainActivity extends AppCompatActivity
             if(currentFragment.getClass() == ProductFragment.class) {
                 UserSettingsDialogFragment settingsDialog = new UserSettingsDialogFragment();
                 settingsDialog.show(fragmentManager, null);
+            } else if(currentFragment.getClass() == AlertFragment.class) {
+                AlertDropdownDialogFragment settingsDialog = new AlertDropdownDialogFragment();
+                settingsDialog.show(fragmentManager, null);
             }
         }
+    }
+
+    @Override
+    public void onAlertOptions(AlertService.Alert alert) {
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        ProductOptionsDialogFragment dialog = new ProductOptionsDialogFragment();
+        dialog.show(fragmentManager, null);
     }
 }

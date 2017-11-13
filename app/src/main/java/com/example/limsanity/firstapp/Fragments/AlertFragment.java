@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +23,7 @@ import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -33,7 +39,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
     AlertCallback callback;
 
     public AlertFragment() {
-        // Required empty public constructowr
+        // Required empty public constructor
     }
 
     public static AlertFragment newInstance(AlertService service, AlertCallback callback) {
@@ -41,6 +47,35 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         fragment.alertService = service;
         fragment.callback = callback;
         return fragment;
+    }
+
+    public void updateSelectedItems() {
+        int numItems = 0;
+        for(AlertGroupHolder holder : ((AlertsGroupAdapter)alerts_list.getAdapter()).holders) {
+            for(AlertHolder alertHolder : ((AlertAdapter)holder.list_view.getAdapter()).holders) {
+                if(((CheckBox)alertHolder.itemView.findViewById(R.id.alertSelectedCB)).isChecked()) {
+                    numItems++;
+                }
+            }
+        }
+        CardView cardView = currentView.findViewById(R.id.itemSelectedView);
+        if(numItems > 0) {
+            if(cardView.getVisibility() == View.GONE) {
+                // Popup animation for the menu
+                Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                cardView.startAnimation(popupAnimation);
+                cardView.setVisibility(View.VISIBLE);
+            }
+            ((TextView)cardView.findViewById(R.id.itemSelectedTV))
+                    .setText(String.format(Locale.ENGLISH, "%d item(s) selected", numItems));
+        } else {
+            if(cardView.getVisibility() == View.VISIBLE) {
+                // Popup animation for the menu
+                Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+                cardView.startAnimation(popupAnimation);
+                cardView.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -99,6 +134,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     public class AlertsGroupAdapter extends RecyclerView.Adapter<AlertGroupHolder>{
         List<List<AlertService.Alert>> list;
+        List<AlertGroupHolder> holders = new ArrayList<>();
 
         AlertsGroupAdapter(List<List<AlertService.Alert>> list_grouped) {
             this.list = list_grouped;
@@ -109,7 +145,9 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.alert_group_layout, parent,
                             false);
-            return new AlertGroupHolder(itemView, list);
+            AlertGroupHolder holder = new AlertGroupHolder(itemView, list);
+            holders.add(holder);
+            return holder;
         }
 
         @Override
@@ -130,6 +168,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     public class AlertAdapter extends RecyclerView.Adapter<AlertHolder>{
         List<AlertService.Alert> list;
+        List<AlertHolder> holders = new ArrayList<>();
 
         AlertAdapter(List<AlertService.Alert> list) {
             this.list = list;
@@ -140,11 +179,13 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.alert_item_layout, parent,
                             false);
-            return new AlertHolder(itemView);
+            AlertHolder holder = new AlertHolder(itemView);
+            holders.add(holder);
+            return holder;
         }
 
         @Override
-        public void onBindViewHolder(AlertHolder holder, int position) {
+        public void onBindViewHolder(final AlertHolder holder, int position) {
             ((TextView)holder.itemView.findViewById(R.id.alertNameTV))
                     .setText(list.get(position).name);
             ((TextView)holder.itemView.findViewById(R.id.alertDescTV))
@@ -155,15 +196,17 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
             threeDots.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    /*
-                    PopupMenu popup = new PopupMenu(mContext, threeDots);
-                    popup.setGravity(Gravity.BOTTOM);
-                    MenuInflater inflater = popup.getMenuInflater();
-                    inflater.inflate(R.menu.alert_popup, popup.getMenu());
-                    popup.show();
-                    */
+                callback.onAlertOptions(list.get(holder.getAdapterPosition()));
                 }
             });
+
+            ((CheckBox) holder.itemView.findViewById(R.id.alertSelectedCB)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    updateSelectedItems();
+                }
+            });
+
             // If the alert is completed, mark it with a checkmark
             if(!list.get(position).status.equals("Active")) {
                 ((ImageView)holder.itemView.findViewById(R.id.alarmIcon))
@@ -180,9 +223,11 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     class AlertGroupHolder extends RecyclerView.ViewHolder {
         List<List<AlertService.Alert>> list;
+        RecyclerView list_view;
         AlertGroupHolder(View itemView, List<List<AlertService.Alert>> list) {
             super(itemView);
             this.list = list;
+            this.list_view = itemView.findViewById(R.id.alert_list);
         }
     }
 
@@ -192,7 +237,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         }
     }
 
-    interface AlertCallback {
+    public interface AlertCallback {
         void onAlertOptions(AlertService.Alert alert);
     }
 }
