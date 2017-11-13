@@ -29,7 +29,7 @@ import java.util.Locale;
  */
 
 public class ProductService {
-    private static final String ENDPOINT = "http://10.209.91.48:3000/products";
+    private static final String ENDPOINT = "http://192.168.1.7:3000/products";
 
     private RequestQueue requestQueue;
 

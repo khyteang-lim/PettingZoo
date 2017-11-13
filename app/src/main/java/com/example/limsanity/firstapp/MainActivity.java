@@ -22,7 +22,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.limsanity.firstapp.API.AlertService;
 import com.example.limsanity.firstapp.API.ProductService;
+import com.example.limsanity.firstapp.API.SettingsService;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
+import com.example.limsanity.firstapp.Fragments.ConnectedDeviceFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
 
 
@@ -32,10 +34,12 @@ public class MainActivity extends AppCompatActivity
     // Services
     AlertService alertService;
     ProductService productService;
+    SettingsService settingsService;
 
     // Fragments
     AlertFragment alertFragment;
     ProductFragment productFragment;
+    ConnectedDeviceFragment settingsFragment;
 
 
     @Override
@@ -64,16 +68,18 @@ public class MainActivity extends AppCompatActivity
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         alertService = new AlertService(requestQueue);
         productService = new ProductService(requestQueue);
+        settingsService = new SettingsService(requestQueue);
 
         // Instantiate the fragments
         alertFragment = AlertFragment.newInstance(alertService);
         productFragment = ProductFragment.newInstance(productService);
+        settingsFragment = ConnectedDeviceFragment.newInstance(settingsService);
 
         // Show the AlertFragment
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.add(R.id.fragment_container, alertFragment);
+        fragmentTransaction.add(R.id.fragment_container, productFragment);
         fragmentTransaction.commit();
     }
 
@@ -110,6 +116,15 @@ public class MainActivity extends AppCompatActivity
             }
             productFragment = ProductFragment.newInstance(productService);
             fragmentTransaction.add(R.id.fragment_container, productFragment);
+            fragmentTransaction.commit();
+        } else if(id == R.id.settings){
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(fragmentManager.findFragmentByTag(settingsFragment.getClass().getName()) != null) {
+                fragmentTransaction.remove(settingsFragment);
+            }
+            settingsFragment = ConnectedDeviceFragment.newInstance(settingsService);
+            fragmentTransaction.add(R.id.fragment_container, settingsFragment);
             fragmentTransaction.commit();
         }
 
