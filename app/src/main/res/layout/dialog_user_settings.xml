@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panel"
+    >
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="20dp"
+        android:textSize="17sp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tvUserControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User controls"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tvContentFiltering"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Content Filtering"
+        app:layout_constraintTop_toBottomOf="@id/tvUserControls"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        android:layout_marginTop="30dp"
+        android:textSize="17sp"
+        />
+    <TextView
+        android:id="@+id/tvContentFilteringDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Set the content filtering level to restrict apps that can be downloaded"
+        app:layout_constraintTop_toBottomOf="@id/tvContentFiltering"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        app:layout_constraintTop_toBottomOf="@id/tvContentFilteringDesc"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="17sp"
+        />
+    <TextView
+        android:id="@+id/tvPasswordDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Require password for purchase or use password to restrict purchase"
+        app:layout_constraintTop_toBottomOf="@id/tvPassword"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/ivHorizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@android:color/darker_gray"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toBottomOf="@id/tvPasswordDesc"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/tvGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="General"
+        app:layout_constraintTop_toBottomOf="@id/ivHorizontalLine"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        android:layout_marginTop="15dp"
+        />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/title"
+        app:layout_constraintTop_toTopOf="@id/tvNotifications"
+        app:layout_constraintBottom_toBottomOf="@id/tvNotificationsDesc"
+        />
+
+    <TextView
+        android:id="@+id/tvNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        app:layout_constraintTop_toBottomOf="@id/tvGeneral"
+        app:layout_constraintLeft_toRightOf="@id/checkBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:textSize="17sp"
+        />
+    <TextView
+        android:id="@+id/tvNotificationsDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Notify me about updates to apps or games that I have downloaded"
+        app:layout_constraintTop_toBottomOf="@id/tvNotifications"
+        app:layout_constraintLeft_toLeftOf="@id/tvNotifications"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        />
+
+</android.support.constraint.ConstraintLayout>
