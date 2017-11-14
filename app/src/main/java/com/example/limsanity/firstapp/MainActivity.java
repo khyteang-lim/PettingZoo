@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -26,6 +27,8 @@ import com.example.limsanity.firstapp.Fragments.IndividualProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
+
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentTransaction.add(R.id.fragment_container, productFragment);
         fragmentTransaction.commit();
+        ((TextView)findViewById(R.id.title)).setText("Products");
 
         // Set the onclick for the top nav items
         findViewById(R.id.threeBotsIB).setOnClickListener(this);
@@ -114,7 +118,7 @@ public class MainActivity extends AppCompatActivity
             currentFragment = alertFragment;
             fragmentTransaction.add(R.id.fragment_container, alertFragment);
             fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Alerts");
+            ((TextView)findViewById(R.id.title)).setText("Alerts");
         } else if(id == R.id.products){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -125,7 +129,7 @@ public class MainActivity extends AppCompatActivity
             currentFragment = productFragment;
             fragmentTransaction.add(R.id.fragment_container, productFragment);
             fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Products");
+            ((TextView)findViewById(R.id.title)).setText("Products");
         } else if(id == R.id.settings){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -155,6 +159,7 @@ public class MainActivity extends AppCompatActivity
         currentFragment = fixtureFragment;
         fragmentTransaction.add(R.id.fragment_container, fixtureFragment);
         fragmentTransaction.commit();
+        ((TextView)findViewById(R.id.title)).setText(String.format(Locale.ENGLISH, "Fixture: %d", fixture.id));
     }
 
     @Override
