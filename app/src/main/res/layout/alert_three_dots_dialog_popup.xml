@@ -18,8 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border"
             android:padding="10dp"
-            android:text="Cluster Prism selected"
-            android:textSize="10dp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@id/ackAlertLL" />
 
         <LinearLayout
@@ -36,13 +35,14 @@
                 android:id="@+id/alertAckIV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_check_black_24dp" />
+                android:src="@drawable/ic_check_black_24dp"
+                android:contentDescription="@string/image_view_desc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:text="Acknowledge" />
+                android:layout_marginStart="40dp"
+                android:text="@string/alert_popup_acknowledge" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,13 +58,14 @@
                 android:id="@+id/alertAddNoteIV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_content_paste_gray_24dp" />
+                android:src="@drawable/ic_content_paste_gray_24dp"
+                android:contentDescription="@string/image_view_desc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:text="Add Note" />
+                android:layout_marginStart="40dp"
+                android:text="@string/alert_popup_add_notes"/>
         </LinearLayout>
 
         <LinearLayout
@@ -80,13 +81,14 @@
                 android:id="@+id/alertDeleteIV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete_gray_24dp" />
+                android:src="@drawable/ic_delete_gray_24dp"
+                android:contentDescription="@string/image_view_desc"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:text="Delete" />
+                android:layout_marginStart="40dp"
+                android:text="@string/alert_popup_delete" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 

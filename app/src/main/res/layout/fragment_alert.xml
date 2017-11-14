@@ -20,21 +20,20 @@
             android:id="@+id/selectAllCB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="Select All"
+            android:gravity="start|center"
+            android:text="@string/fragment_alert_select_all"
             android:textColor="#889297"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginStart="15dp"/>
 
         <TextView
             android:id="@+id/currentDateTV"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Date"
-            android:gravity="center|right"
-            android:layout_marginRight="15dp"/>s
+            android:gravity="center|end"
+            android:layout_marginEnd="15dp"/>
     </LinearLayout>
 
     <android.support.v7.widget.CardView

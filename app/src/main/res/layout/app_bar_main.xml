@@ -20,14 +20,12 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginEnd="20dp">
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="start|center_vertical"
-                    android:text="title"
                     android:textAlignment="textStart"
                     android:textAppearance="@android:style/TextAppearance.Material.Title"
                     android:textColor="@android:color/white"
@@ -39,6 +37,7 @@
                     android:layout_marginStart="15dp"/>
                 <ImageView
                     android:id="@+id/filter"
+                    android:contentDescription="@string/image_view_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_filter_list_black_24dp"
@@ -51,6 +50,7 @@
                     />
                 <ImageView
                     android:id="@+id/search"
+                    android:contentDescription="@string/image_view_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_search_black_24dp"
@@ -63,6 +63,7 @@
                     />
                 <ImageView
                     android:id="@+id/threeBotsIB"
+                    android:contentDescription="@string/image_view_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_more_vert_black_24dp"

@@ -25,8 +25,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="Second Label"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/secondLabelTV"
             />
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@id/secondLabelTV"
             android:text="Above 87.5 amperes"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@id/secondLabelTV"
@@ -61,8 +61,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="Time:"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/alertTimeTV"
             />
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@id/alertTimeTV"
             android:text="2017-08-22, 02:39:04 PM"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/alertTimeTV"
             android:layout_marginTop="5dp"
@@ -98,8 +98,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="Acknowledge Alert:"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/ackAlertTV"
             />
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@id/ackAlertTV"
             android:text="No"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/ackAlertTV"
             android:layout_marginTop="5dp"
@@ -122,7 +122,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -140,6 +139,7 @@
         android:src="@drawable/light_chart_3x"
         app:layout_constraintTop_toBottomOf="@+id/ackAlertCL"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        android:contentDescription="@string/image_view_desc"/>
 
 </android.support.constraint.ConstraintLayout>

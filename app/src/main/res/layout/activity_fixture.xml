@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
-    tools:context=".Fragments.IndividualProductFragment">
+    android:background="@color/cardview_light_background">
 
     <ImageView
+        android:contentDescription="@string/activity_fixture_image_view_desc"
         android:id="@+id/productMetric"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,7 +21,6 @@
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/individualProductBottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -37,11 +35,10 @@
             android:id="@+id/detailTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:text="Details"
-            android:textSize="20dp"
+            android:text="@string/activity_fixture_textview_detail"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,16 +48,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/detailTV" />
+            app:layout_constraintTop_toTopOf="@+id/detailTV"
+            android:contentDescription="@string/activity_fixture_image_view_desc"/>
 
         <LinearLayout
             android:id="@+id/createdOnLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
@@ -70,15 +66,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Created On:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_created_on"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017-050-09T19:34..."
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_created_on_date"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -86,7 +82,6 @@
             android:id="@+id/createdByLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
@@ -96,15 +91,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Created By:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_created_by"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TK-421"
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_created_by_user"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,15 +114,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Modified On:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_last_modified_on"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="null"
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_last_modified_on_date"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -143,15 +138,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Modified By:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_last_modified_by"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017-050-09T19:34..."
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_last_modified_by_date"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -167,15 +162,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Created On:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_created_on"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017-050-09T19:34..."
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_created_on_date"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -191,18 +186,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Created By:"
-                android:textSize="15dp"
+                android:text="@string/activity_fixture_textview_created_by"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TK-421"
-                android:textSize="15dp" />
+                android:text="@string/activity_fixture_textview_created_by_user"
+                android:textSize="15sp" />
 
         </LinearLayout>
-
 
     </android.support.constraint.ConstraintLayout>
 
