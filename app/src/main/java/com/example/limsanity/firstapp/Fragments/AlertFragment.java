@@ -51,49 +51,31 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     public void updateSelectedItems() {
         int numItems = 0;
-        for(AlertGroupHolder holder : ((AlertsGroupAdapter)alerts_list.getAdapter()).holders) {
-            for(AlertHolder alertHolder : ((AlertAdapter)holder.list_view.getAdapter()).holders) {
-                if(((CheckBox)alertHolder.itemView.findViewById(R.id.alertSelectedCB)).isChecked()) {
+        for (AlertGroupHolder holder : ((AlertsGroupAdapter) alerts_list.getAdapter()).holders) {
+            for (AlertHolder alertHolder : ((AlertAdapter) holder.list_view.getAdapter()).holders) {
+                if (((CheckBox) alertHolder.itemView.findViewById(R.id.alertSelectedCB)).isChecked()) {
                     numItems++;
                 }
             }
         }
         CardView cardView = currentView.findViewById(R.id.alertItemSelectedView);
-        if(numItems > 0) {
-            if(cardView.getVisibility() == View.GONE) {
+        if (numItems > 0) {
+            if (cardView.getVisibility() == View.GONE) {
                 // Popup animation for the menu
                 Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
                 cardView.startAnimation(popupAnimation);
                 cardView.setVisibility(View.VISIBLE);
             }
-            ((TextView)cardView.findViewById(R.id.itemSelectedTV))
+            ((TextView) cardView.findViewById(R.id.itemSelectedTV))
                     .setText(String.format(Locale.ENGLISH, "%d item(s) selected", numItems));
         } else {
-            if(cardView.getVisibility() == View.VISIBLE) {
+            if (cardView.getVisibility() == View.VISIBLE) {
                 // Popup animation for the menu
                 Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
                 cardView.startAnimation(popupAnimation);
                 cardView.setVisibility(View.GONE);
             }
         }
-    }
-
-    public void alertThreeDotsClicked(AlertService.Alert alert) {
-        CardView cardView = currentView.findViewById(R.id.alertItemSelectedView);
-        if (cardView.getVisibility() == View.GONE){
-            Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-            cardView.startAnimation(popupAnimation);
-            cardView.setVisibility(View.VISIBLE);
-            ((TextView)cardView.findViewById(R.id.alertSelectTV))
-                    .setText(alert.name);
-        }
-        else {
-            // Popup animation for the menu
-            Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
-            cardView.startAnimation(popupAnimation);
-            cardView.setVisibility(View.GONE);
-        }
-
     }
 
     @Override
@@ -109,7 +91,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        currentView =  inflater.inflate(R.layout.fragment_alert, container, false);
+        currentView = inflater.inflate(R.layout.fragment_alert, container, false);
         alerts_list = currentView.findViewById(R.id.alert_group_list);
         alerts_list.setHasFixedSize(true);
         alertService.getAlerts(this, new Date[]{
@@ -117,6 +99,17 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
                 new Date(1000 * 60 * 60 * 2),
                 // Last five days
                 new Date(1000 * 60 * 60 * 24 * 5)
+        });
+        ((CheckBox) currentView.findViewById(R.id.selectAllCB)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                for (AlertGroupHolder holder : ((AlertsGroupAdapter) alerts_list.getAdapter()).holders) {
+                    for (AlertHolder alertHolder : ((AlertAdapter) holder.list_view.getAdapter()).holders) {
+                        ((CheckBox) alertHolder.itemView.findViewById(R.id.alertSelectedCB)).setChecked(b);
+                    }
+                }
+                updateSelectedItems();
+            }
         });
         return currentView;
     }
@@ -146,11 +139,11 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         // Show the date of the first item
         SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd",
                 Locale.ENGLISH);
-        ((TextView)(currentView.findViewById(R.id.currentDateTV))).setText(
-            format.format(AlertService.parseDate(list.get(0).get(0).date)));
+        ((TextView) (currentView.findViewById(R.id.currentDateTV))).setText(
+                format.format(AlertService.parseDate(list.get(0).get(0).date)));
     }
 
-    public class AlertsGroupAdapter extends RecyclerView.Adapter<AlertGroupHolder>{
+    public class AlertsGroupAdapter extends RecyclerView.Adapter<AlertGroupHolder> {
         List<List<AlertService.Alert>> list;
         List<AlertGroupHolder> holders = new ArrayList<>();
 
@@ -184,7 +177,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         }
     }
 
-    public class AlertAdapter extends RecyclerView.Adapter<AlertHolder>{
+    public class AlertAdapter extends RecyclerView.Adapter<AlertHolder> {
         List<AlertService.Alert> list;
         List<AlertHolder> holders = new ArrayList<>();
 
@@ -204,18 +197,17 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
         @Override
         public void onBindViewHolder(final AlertHolder holder, int position) {
-            ((TextView)holder.itemView.findViewById(R.id.alertNameTV))
+            ((TextView) holder.itemView.findViewById(R.id.alertNameTV))
                     .setText(list.get(position).name);
-            ((TextView)holder.itemView.findViewById(R.id.alertDescTV))
+            ((TextView) holder.itemView.findViewById(R.id.alertDescTV))
                     .setText(list.get(position).description);
-            ((TextView)holder.itemView.findViewById(R.id.alertDateTV))
+            ((TextView) holder.itemView.findViewById(R.id.alertDateTV))
                     .setText(list.get(position).date);
             final ImageView threeDots = holder.itemView.findViewById(R.id.alertThreeDotsIB);
-            threeDots.setOnClickListener(new View.OnClickListener(){
+            threeDots.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    alertThreeDotsClicked(list.get(holder.getAdapterPosition()));
-                //callback.onAlertOptions(list.get(holder.getAdapterPosition()));
+                callback.onAlertOptions(list.get(holder.getAdapterPosition()));
                 }
             });
 
@@ -227,8 +219,8 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
             });
 
             // If the alert is completed, mark it with a checkmark
-            if(!list.get(position).status.equals("Active")) {
-                ((ImageView)holder.itemView.findViewById(R.id.alarmIcon))
+            if (!list.get(position).status.equals("Active")) {
+                ((ImageView) holder.itemView.findViewById(R.id.alarmIcon))
                         .setImageDrawable(ContextCompat.getDrawable(mContext,
                                 R.drawable.ic_check_green_24dp));
             }
@@ -243,6 +235,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
     class AlertGroupHolder extends RecyclerView.ViewHolder {
         List<List<AlertService.Alert>> list;
         RecyclerView list_view;
+
         AlertGroupHolder(View itemView, List<List<AlertService.Alert>> list) {
             super(itemView);
             this.list = list;

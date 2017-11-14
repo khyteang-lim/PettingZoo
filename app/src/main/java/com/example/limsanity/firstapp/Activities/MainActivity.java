@@ -22,8 +22,8 @@ import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.API.SettingsService;
 import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
+import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
-import com.example.limsanity.firstapp.Fragments.ProductOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
 import com.example.limsanity.firstapp.R;
 
@@ -142,9 +142,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProductMenu(ProductService.Product product) {
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        ProductOptionsDialogFragment dialog = new ProductOptionsDialogFragment();
-        dialog.show(fragmentManager, null);
     }
 
     @Override
@@ -165,7 +162,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onAlertOptions(AlertService.Alert alert) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        ProductOptionsDialogFragment dialog = new ProductOptionsDialogFragment();
+        AlertOptionsDialogFragment dialog = new AlertOptionsDialogFragment();
         dialog.show(fragmentManager, null);
     }
 

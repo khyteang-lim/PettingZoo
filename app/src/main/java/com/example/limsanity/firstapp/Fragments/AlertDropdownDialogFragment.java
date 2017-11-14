@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,10 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
             WindowManager.LayoutParams windowParams = window.getAttributes();
             windowParams.dimAmount = 0;
             windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimaryDark));
             window.setAttributes(windowParams);
         }
     }
