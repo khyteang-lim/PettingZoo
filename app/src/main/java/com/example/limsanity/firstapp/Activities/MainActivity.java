@@ -23,6 +23,7 @@ import com.example.limsanity.firstapp.API.SettingsService;
 import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
 import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
+import com.example.limsanity.firstapp.Fragments.EditMadeDialogFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
 import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
 import com.example.limsanity.firstapp.R;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     ProductFragment productFragment;
 
     Fragment currentFragment = null;
+
+    private static final int FIXTURE_RESULT = 0;
 
 
     @Override
@@ -137,11 +140,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFixtureClicked(ProductService.Fixture fixture) {
         Intent intent = new Intent(this, FixtureActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, FIXTURE_RESULT);
     }
 
     @Override
     public void onProductMenu(ProductService.Product product) {
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == FIXTURE_RESULT) {
+            if(resultCode == 0) {
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                EditMadeDialogFragment fragment = EditMadeDialogFragment.newInstance(data.getStringExtra("title"));
+                fragment.show(fragmentManager, null);
+            }
+        }
     }
 
     @Override
