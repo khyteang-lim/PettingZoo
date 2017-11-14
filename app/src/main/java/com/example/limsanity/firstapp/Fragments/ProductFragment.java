@@ -207,6 +207,13 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
                 }
             });
 
+            holder.itemView.findViewById(R.id.fixtureBody).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onFixtureClicked(list.get(holder.getAdapterPosition()));
+                }
+            });
+
         }
 
         @Override

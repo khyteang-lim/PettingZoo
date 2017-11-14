@@ -40,10 +40,13 @@ public class ProductOptionsDialogFragment extends DialogFragment implements View
         view.setOnClickListener(this);
         panel = view.findViewById(R.id.panel);
 
-        // Popup animation for the menu
-        Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_up);
-        popupAnimation.setDuration(100);
-        panel.startAnimation(popupAnimation);
+        if(panel != null) {
+            // Popup animation for the menu
+            Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_up);
+            popupAnimation.setDuration(100);
+            panel.startAnimation(popupAnimation);
+        }
+
         return view;
     }
 

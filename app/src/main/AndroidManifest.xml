@@ -1,32 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.limsanity.firstapp">
-<uses-permission android:name="android.permission.INTERNET" />
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.limsanity.firstapp">
 
-    <activity
-        android:name=".SplashActivity"
-        android:theme="@style/SplashTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity
-        android:name=".LoginActivity"
-        android:theme="@style/AppTheme.NoActionBar">
-    </activity>
-    <activity
-        android:name=".MainActivity"
-        android:label="@string/title_activity_main"
-        android:theme="@style/AppTheme" />
-</application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activities.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.ConnectedDevicesActivity"
+            android:label="Connected Devices"
+            android:theme="@style/BackActivity"
+            android:parentActivityName=".Activities.MainActivity"
+            ></activity>
+        <activity android:name=".Activities.FixtureActivity"
+            android:label="Connected Devices"
+            android:theme="@style/BackActivity"
+            android:parentActivityName=".Activities.MainActivity"
+            ></activity>
+    </application>
 
 </manifest>

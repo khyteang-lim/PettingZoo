@@ -21,6 +21,8 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
     Context mContext;
     View panel;
 
+    AlertDropdownInterface callback;
+
     @Override
     public void onStart() {
         super.onStart();
@@ -38,6 +40,12 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
         }
     }
 
+    public static AlertDropdownDialogFragment newInstance(AlertDropdownInterface callback) {
+        AlertDropdownDialogFragment fragment = new AlertDropdownDialogFragment();
+        fragment.callback = callback;
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,13 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
         View view = inflater.inflate(R.layout.alert_three_dot_header_window_pop, container);
         view.setOnClickListener(this);
         panel = view.findViewById(R.id.panel);
+
+        view.findViewById(R.id.connectedDeviceCL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onClickConnectedDevices();
+            }
+        });
 
         // Popup animation for the menu
         Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
@@ -76,5 +91,9 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
                 AlertDropdownDialogFragment.this.dismiss();
             }
         }, 200);
+    }
+
+    public interface AlertDropdownInterface {
+        public void onClickConnectedDevices();
     }
 }

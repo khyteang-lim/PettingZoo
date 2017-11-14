@@ -1,5 +1,6 @@
-package com.example.limsanity.firstapp;
+package com.example.limsanity.firstapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -21,18 +22,14 @@ import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.API.SettingsService;
 import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
-import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
-import com.example.limsanity.firstapp.Fragments.ConnectedDeviceFragment;
-import com.example.limsanity.firstapp.Fragments.IndividualProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
-
-import java.util.Locale;
+import com.example.limsanity.firstapp.R;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback, AlertDropdownDialogFragment.AlertDropdownInterface {
 
     // Services
     AlertService alertService;
@@ -42,8 +39,6 @@ public class MainActivity extends AppCompatActivity
     // Fragments
     AlertFragment alertFragment;
     ProductFragment productFragment;
-    ConnectedDeviceFragment settingsFragment;
-    IndividualProductFragment fixtureFragment;
 
     Fragment currentFragment = null;
 
@@ -131,16 +126,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             ((TextView)findViewById(R.id.title)).setText("Products");
         } else if(id == R.id.settings){
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            if(settingsFragment != null && fragmentManager.findFragmentByTag(ConnectedDeviceFragment.class.getName()) != null) {
-                fragmentTransaction.remove(settingsFragment);
-            }
-            settingsFragment = ConnectedDeviceFragment.newInstance(settingsService);
-            currentFragment = settingsFragment;
-            fragmentTransaction.add(R.id.fragment_container, settingsFragment);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Setting");
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -150,16 +136,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFixtureClicked(ProductService.Fixture fixture) {
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(fixtureFragment != null && fragmentManager.findFragmentByTag(IndividualProductFragment.class.getName()) != null) {
-            fragmentTransaction.remove(fixtureFragment);
-        }
-        fixtureFragment = IndividualProductFragment.newInstance();
-        currentFragment = fixtureFragment;
-        fragmentTransaction.add(R.id.fragment_container, fixtureFragment);
-        fragmentTransaction.commit();
-        ((TextView)findViewById(R.id.title)).setText(String.format(Locale.ENGLISH, "Fixture: %d", fixture.id));
+        Intent intent = new Intent(this, FixtureActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -177,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                 UserSettingsDialogFragment settingsDialog = new UserSettingsDialogFragment();
                 settingsDialog.show(fragmentManager, null);
             } else if(currentFragment.getClass() == AlertFragment.class) {
-                AlertDropdownDialogFragment settingsDialog = new AlertDropdownDialogFragment();
+                AlertDropdownDialogFragment settingsDialog = AlertDropdownDialogFragment.newInstance(this);
                 settingsDialog.show(fragmentManager, null);
             }
         }
@@ -189,5 +167,11 @@ public class MainActivity extends AppCompatActivity
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         ProductOptionsDialogFragment dialog = new ProductOptionsDialogFragment();
         dialog.show(fragmentManager, null);
+    }
+
+    @Override
+    public void onClickConnectedDevices() {
+        Intent intent = new Intent(this, ConnectedDevicesActivity.class);
+        startActivity(intent);
     }
 }
