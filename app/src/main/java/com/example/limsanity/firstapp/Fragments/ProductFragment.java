@@ -96,7 +96,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
                 }
             }
         }
-        CardView cardView = currentView.findViewById(R.id.itemSelectedView);
+        CardView cardView = currentView.findViewById(R.id.productItemSelectedView);
         if(numItems > 0) {
             if(cardView.getVisibility() == View.GONE) {
                 // Popup animation for the menu
@@ -104,7 +104,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
                 cardView.startAnimation(popupAnimation);
                 cardView.setVisibility(View.VISIBLE);
             }
-            ((TextView)cardView.findViewById(R.id.itemSelectedTV))
+            ((TextView)cardView.findViewById(R.id.productItemSelectedTV))
                     .setText(String.format(Locale.ENGLISH, "%d item(s) selected", numItems));
         } else {
             if(cardView.getVisibility() == View.VISIBLE) {

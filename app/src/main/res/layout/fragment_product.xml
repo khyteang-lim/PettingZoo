@@ -19,7 +19,7 @@
         tools:listitem="@layout/product_card_layout"/>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/itemSelectedView"
+        android:id="@+id/productItemSelectedView"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:background="@color/cardview_light_background"
         >
         <include
-            layout="@layout/alert_selected_bottom_pop_up_window"/>
+            layout="@layout/product_selected_bottom_pop_up_window"/>
     </android.support.v7.widget.CardView>
 
 

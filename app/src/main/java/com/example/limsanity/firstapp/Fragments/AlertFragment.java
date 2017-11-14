@@ -58,7 +58,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
                 }
             }
         }
-        CardView cardView = currentView.findViewById(R.id.itemSelectedView);
+        CardView cardView = currentView.findViewById(R.id.alertItemSelectedView);
         if(numItems > 0) {
             if(cardView.getVisibility() == View.GONE) {
                 // Popup animation for the menu

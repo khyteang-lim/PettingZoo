@@ -20,6 +20,7 @@ import com.example.limsanity.firstapp.API.ProductService;
 import com.example.limsanity.firstapp.API.SettingsService;
 import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
 import com.example.limsanity.firstapp.Fragments.AlertFragment;
+import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
 import com.example.limsanity.firstapp.Fragments.ConnectedDeviceFragment;
 import com.example.limsanity.firstapp.Fragments.IndividualProductFragment;
 import com.example.limsanity.firstapp.Fragments.ProductFragment;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity
             currentFragment = alertFragment;
             fragmentTransaction.add(R.id.fragment_container, alertFragment);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Alerts");
         } else if(id == R.id.products){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -123,6 +125,7 @@ public class MainActivity extends AppCompatActivity
             currentFragment = productFragment;
             fragmentTransaction.add(R.id.fragment_container, productFragment);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Products");
         } else if(id == R.id.settings){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity
             currentFragment = settingsFragment;
             fragmentTransaction.add(R.id.fragment_container, settingsFragment);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Setting");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -155,6 +159,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProductMenu(ProductService.Product product) {
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        ProductOptionsDialogFragment dialog = new ProductOptionsDialogFragment();
+        dialog.show(fragmentManager, null);
     }
 
     @Override

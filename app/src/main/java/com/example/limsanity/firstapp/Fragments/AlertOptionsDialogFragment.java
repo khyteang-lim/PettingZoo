@@ -16,7 +16,11 @@ import android.view.animation.AnimationUtils;
 
 import com.example.limsanity.firstapp.R;
 
-public class ProductOptionsDialogFragment extends DialogFragment implements View.OnClickListener {
+/**
+ * Created by Limsanity on 11/13/17.
+ */
+
+public class AlertOptionsDialogFragment extends DialogFragment implements View.OnClickListener {
     Context mContext;
     View panel;
 
@@ -36,7 +40,7 @@ public class ProductOptionsDialogFragment extends DialogFragment implements View
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.product_selected_bottom_pop_up_window, container);
+        View view = inflater.inflate(R.layout.alert_selected_bottom_pop_up_window, container);
         view.setOnClickListener(this);
         panel = view.findViewById(R.id.panel);
 
@@ -63,7 +67,7 @@ public class ProductOptionsDialogFragment extends DialogFragment implements View
         panel.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ProductOptionsDialogFragment.this.dismiss();
+                AlertOptionsDialogFragment.this.dismiss();
             }
         }, 100);
     }
