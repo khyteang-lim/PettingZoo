@@ -78,6 +78,24 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         }
     }
 
+    public void alertThreeDotsClicked(AlertService.Alert alert) {
+        CardView cardView = currentView.findViewById(R.id.alertItemSelectedView);
+        if (cardView.getVisibility() == View.GONE){
+            Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+            cardView.startAnimation(popupAnimation);
+            cardView.setVisibility(View.VISIBLE);
+            ((TextView)cardView.findViewById(R.id.alertSelectTV))
+                    .setText(alert.name);
+        }
+        else {
+            // Popup animation for the menu
+            Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
+            cardView.startAnimation(popupAnimation);
+            cardView.setVisibility(View.GONE);
+        }
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,11 +210,12 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
                     .setText(list.get(position).description);
             ((TextView)holder.itemView.findViewById(R.id.alertDateTV))
                     .setText(list.get(position).date);
-            final ImageView threeDots = holder.itemView.findViewById(R.id.threeBotsIB);
+            final ImageView threeDots = holder.itemView.findViewById(R.id.alertThreeDotsIB);
             threeDots.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                callback.onAlertOptions(list.get(holder.getAdapterPosition()));
+                    alertThreeDotsClicked(list.get(holder.getAdapterPosition()));
+                //callback.onAlertOptions(list.get(holder.getAdapterPosition()));
                 }
             });
 

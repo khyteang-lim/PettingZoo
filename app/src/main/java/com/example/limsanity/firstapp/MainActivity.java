@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public void onAlertOptions(AlertService.Alert alert) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
