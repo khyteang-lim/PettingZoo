@@ -43,7 +43,7 @@ public class EditMadeDialogFragment extends DialogFragment implements View.OnCli
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
+            window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         }
     }
 
@@ -54,7 +54,7 @@ public class EditMadeDialogFragment extends DialogFragment implements View.OnCli
         view.setOnClickListener(this);
         panel = view.findViewById(R.id.panel);
 
-        ((TextView)view.findViewById(R.id.editMadeTV)).setText(title);
+        ((TextView) view.findViewById(R.id.editMadeTV)).setText(title);
         view.findViewById(R.id.dismissBtn).setOnClickListener(this);
 
         // Popup animation for the menu

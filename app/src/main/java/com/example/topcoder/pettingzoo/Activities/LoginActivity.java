@@ -3,9 +3,9 @@ package com.example.topcoder.pettingzoo.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.submitBtn) void submitLogin(View view)
-    {
+    @OnClick(R.id.submitBtn)
+    void submitLogin(View view) {
         ConstraintLayout errorUsernameConstraint = findViewById(R.id.enterUsernameError);
         ConstraintLayout errorPasswordConstraint = findViewById(R.id.enterPasswordError);
         errorUsernameConstraint.setVisibility(View.INVISIBLE);
@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText username = findViewById(R.id.usernameTV);
         EditText password = findViewById(R.id.passwordTV);
         if ((username.getText() != null && username.getText().length() > 0)
-                && (password.getText() != null && password.getText().length() > 0)){
-            if(!(username.getText().toString().equals("username")
+                && (password.getText() != null && password.getText().length() > 0)) {
+            if (!(username.getText().toString().equals("username")
                     && password.getText().toString().equals("password"))) {
                 final AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
                 alertDialog.setTitle("Incorrect Password");
@@ -43,11 +43,11 @@ public class LoginActivity extends AppCompatActivity {
                 alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
                         "Cancel", new DialogInterface.OnClickListener() {
 
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialog.dismiss();
-                    }
-                });
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                alertDialog.dismiss();
+                            }
+                        });
                 alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,
                         "Try Again", new DialogInterface.OnClickListener() {
 
@@ -63,14 +63,11 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_TEXT, message);
                 startActivity(intent);
             }
-        }
-        else {
-            if (!(username.getText() != null && username.getText().length() > 0))
-            {
+        } else {
+            if (!(username.getText() != null && username.getText().length() > 0)) {
                 errorUsernameConstraint.setVisibility(View.VISIBLE);
             }
-            if (!(password.getText() != null && password.getText().length() > 0))
-            {
+            if (!(password.getText() != null && password.getText().length() > 0)) {
                 errorPasswordConstraint.setVisibility(View.VISIBLE);
             }
         }

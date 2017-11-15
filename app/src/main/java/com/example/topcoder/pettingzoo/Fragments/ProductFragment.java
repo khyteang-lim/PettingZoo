@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,7 +58,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        currentView =  inflater.inflate(R.layout.fragment_product, container, false);
+        currentView = inflater.inflate(R.layout.fragment_product, container, false);
         productsList = currentView.findViewById(R.id.product_list);
         productsList.setHasFixedSize(true);
         productService.getProducts(this);
@@ -89,25 +90,25 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
 
     public void updateSelectedItems() {
         int numItems = 0;
-        for(ProductHolder holder : ((ProductAdapter)productsList.getAdapter()).holders) {
-            for(FixtureHolder fixtureHolder : ((FixtureAdapter)holder.fixtureListView.getAdapter()).holders) {
-                if(((CheckBox)fixtureHolder.itemView.findViewById(R.id.productSelectedCB)).isChecked()) {
+        for (ProductHolder holder : ((ProductAdapter) productsList.getAdapter()).holders) {
+            for (FixtureHolder fixtureHolder : ((FixtureAdapter) holder.fixtureListView.getAdapter()).holders) {
+                if (((CheckBox) fixtureHolder.itemView.findViewById(R.id.productSelectedCB)).isChecked()) {
                     numItems++;
                 }
             }
         }
         CardView cardView = currentView.findViewById(R.id.productItemSelectedView);
-        if(numItems > 0) {
-            if(cardView.getVisibility() == View.GONE) {
+        if (numItems > 0) {
+            if (cardView.getVisibility() == View.GONE) {
                 // Popup animation for the menu
                 Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
                 cardView.startAnimation(popupAnimation);
                 cardView.setVisibility(View.VISIBLE);
             }
-            ((TextView)cardView.findViewById(R.id.productItemSelectedTV))
+            ((TextView) cardView.findViewById(R.id.productItemSelectedTV))
                     .setText(String.format(Locale.ENGLISH, "%d item(s) selected", numItems));
         } else {
-            if(cardView.getVisibility() == View.VISIBLE) {
+            if (cardView.getVisibility() == View.VISIBLE) {
                 // Popup animation for the menu
                 Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.fade_out);
                 cardView.startAnimation(popupAnimation);
@@ -116,9 +117,17 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         }
     }
 
-    public class ProductAdapter extends RecyclerView.Adapter<ProductHolder>{
+    public interface ProductFragmentInterface {
+        void onFixtureClicked(ProductService.Fixture fixture);
+
+        void onProductMenu(ProductService.Product product);
+    }
+
+    public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         List<ProductService.Product> list;
-        List<ProductHolder> holders = new ArrayList<>();;
+        List<ProductHolder> holders = new ArrayList<>();
+        ;
+
         ProductAdapter(List<ProductService.Product> list) {
             this.list = list;
         }
@@ -137,9 +146,9 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         public void onBindViewHolder(final ProductHolder holder, int position) {
             RecyclerView fixture_list = holder.itemView.findViewById(R.id.product_group_list);
             // Set the title of product
-            ((TextView)holder.itemView
+            ((TextView) holder.itemView
                     .findViewById(R.id.productName)).setText(list.get(position).name);
-            ((TextView)holder.itemView
+            ((TextView) holder.itemView
                     .findViewById(R.id.productNumber))
                     .setText(("Building No: " + list.get(position).buildingNo));
 
@@ -165,9 +174,10 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         }
     }
 
-    public class FixtureAdapter extends RecyclerView.Adapter<FixtureHolder>{
+    public class FixtureAdapter extends RecyclerView.Adapter<FixtureHolder> {
         List<ProductService.Fixture> list;
         List<FixtureHolder> holders = new ArrayList<>();
+
         FixtureAdapter(List<ProductService.Fixture> list) {
             this.list = list;
         }
@@ -186,19 +196,19 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         @Override
         public void onBindViewHolder(final FixtureHolder holder, final int position) {
             // Set the details of the fixture
-            ((TextView)holder.itemView
+            ((TextView) holder.itemView
                     .findViewById(R.id.productId)).setText(("Fixture: " + list.get(position).id));
-            ((TextView)holder.itemView
+            ((TextView) holder.itemView
                     .findViewById(R.id.productLocation)).setText(("Location: " + list.get(position).location));
-            ((TextView)holder.itemView
+            ((TextView) holder.itemView
                     .findViewById(R.id.productStatus)).setText(("Status: " + list.get(position).status));
-            ((CheckBox)holder.itemView.findViewById(R.id.productSelectedCB))
+            ((CheckBox) holder.itemView.findViewById(R.id.productSelectedCB))
                     .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    updateSelectedItems();
-                }
-            });
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            updateSelectedItems();
+                        }
+                    });
             holder.itemView
                     .findViewById(R.id.threeBotsIB).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -224,6 +234,7 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
 
     class ProductHolder extends RecyclerView.ViewHolder {
         RecyclerView fixtureListView;
+
         ProductHolder(View itemView) {
             super(itemView);
             fixtureListView = itemView.findViewById(R.id.product_group_list);
@@ -234,10 +245,5 @@ public class ProductFragment extends Fragment implements ProductService.OnGetPro
         FixtureHolder(View itemView) {
             super(itemView);
         }
-    }
-
-    public interface ProductFragmentInterface {
-        void onFixtureClicked(ProductService.Fixture fixture);
-        void onProductMenu(ProductService.Product product);
     }
 }

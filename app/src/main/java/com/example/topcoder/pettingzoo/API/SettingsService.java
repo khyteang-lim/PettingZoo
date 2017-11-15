@@ -14,39 +14,30 @@ import java.util.List;
 
 /**
  * Setting has the format:
-     {
-         "propertyGroup": "Connectivity",
-         "properties": [
-             {
-                 "name": "Bluetooth",
-                 "description": "Not visible to other devices",
-                 "type": "toggle",
-                 "value": false
-             }, {
-                 "name": "NFC",
-                 "description": "Allow data exchange when the device touches another device",
-                 "type": "toggle",
-                 "value": true
-             }]
-    }
+ * {
+ * "propertyGroup": "Connectivity",
+ * "properties": [
+ * {
+ * "name": "Bluetooth",
+ * "description": "Not visible to other devices",
+ * "type": "toggle",
+ * "value": false
+ * }, {
+ * "name": "NFC",
+ * "description": "Allow data exchange when the device touches another device",
+ * "type": "toggle",
+ * "value": true
+ * }]
+ * }
  */
 
 public class SettingsService {
-    private static final String ENDPOINT = "http://10.0.2.2:3000/settings";
+    public String ENDPOINT = "/settings";
 
     private RequestQueue requestQueue;
 
     public SettingsService(RequestQueue requestQueue) {
         this.requestQueue = requestQueue;
-    }
-
-    public class Setting {
-        public String name;
-        public String description;
-        public String type;
-        public String value;
-        public String min;
-        public String max;
     }
 
     public void getSettings(final OnGetSettings callback) {
@@ -74,6 +65,15 @@ public class SettingsService {
 
     public interface OnGetSettings {
         void settingsLoaded(List<Setting> list);
+    }
+
+    public class Setting {
+        public String name;
+        public String description;
+        public String type;
+        public String value;
+        public String min;
+        public String max;
     }
 
 }

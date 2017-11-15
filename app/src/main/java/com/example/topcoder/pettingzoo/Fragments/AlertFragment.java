@@ -30,18 +30,15 @@ import java.util.Locale;
 
 public class AlertFragment extends Fragment implements AlertService.OnGetAlerts {
 
-    Context mContext;
-    AlertService alertService;
-    RecyclerView alerts_list;
-
-    View currentView;
-
-    AlertCallback callback;
-
     final String[] POSITION_STRING_MAP = {
             "Past 2 hours",
             "Last 5 days"
     };
+    Context mContext;
+    AlertService alertService;
+    RecyclerView alerts_list;
+    View currentView;
+    AlertCallback callback;
 
     public AlertFragment() {
         // Required empty public constructor
@@ -148,6 +145,12 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
                 format.format(AlertService.parseDate(list.get(0).get(0).date)));
     }
 
+    public interface AlertCallback {
+        void onAlertOptions(AlertService.Alert alert);
+
+        void onAlertItemClick(AlertService.Alert alert);
+    }
+
     public class AlertsGroupAdapter extends RecyclerView.Adapter<AlertGroupHolder> {
         List<List<AlertService.Alert>> list;
         List<AlertGroupHolder> holders = new ArrayList<>();
@@ -168,7 +171,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
         @Override
         public void onBindViewHolder(AlertGroupHolder holder, int position) {
-            ((TextView)holder.itemView.findViewById(R.id.timeTV)).setText(POSITION_STRING_MAP[position]);
+            ((TextView) holder.itemView.findViewById(R.id.timeTV)).setText(POSITION_STRING_MAP[position]);
             RecyclerView list = holder.itemView.findViewById(R.id.alert_list);
             list.setAdapter(new AlertAdapter(holder.list.get(position)));
             LinearLayoutManager lm = new LinearLayoutManager(mContext);
@@ -220,7 +223,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
             threeDots.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                callback.onAlertOptions(list.get(holder.getAdapterPosition()));
+                    callback.onAlertOptions(list.get(holder.getAdapterPosition()));
                 }
             });
 
@@ -260,10 +263,5 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         AlertHolder(View itemView) {
             super(itemView);
         }
-    }
-
-    public interface AlertCallback {
-        void onAlertOptions(AlertService.Alert alert);
-        void onAlertItemClick(AlertService.Alert alert);
     }
 }

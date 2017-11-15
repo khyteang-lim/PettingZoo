@@ -29,35 +29,13 @@ public class RoundedImageView extends android.support.v7.widget.AppCompatImageVi
         super(context, attrs, defStyle);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-
-        Drawable drawable = getDrawable();
-
-        if (drawable == null) {
-            return;
-        }
-
-        if (getWidth() == 0 || getHeight() == 0) {
-            return;
-        }
-        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-        int w = getWidth(), h = getHeight();
-
-        Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
-        canvas.drawBitmap(roundBitmap, 0, 0, null);
-
-    }
-
     public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
         Bitmap sbmp;
 
         if (bmp.getWidth() != radius || bmp.getHeight() != radius) {
             float smallest = Math.min(bmp.getWidth(), bmp.getHeight());
             float factor = smallest / radius;
-            sbmp = Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth() / factor), (int)(bmp.getHeight() / factor), false);
+            sbmp = Bitmap.createScaledBitmap(bmp, (int) (bmp.getWidth() / factor), (int) (bmp.getHeight() / factor), false);
         } else {
             sbmp = bmp;
         }
@@ -81,5 +59,27 @@ public class RoundedImageView extends android.support.v7.widget.AppCompatImageVi
         canvas.drawBitmap(sbmp, rect, rect, paint);
 
         return output;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+        Drawable drawable = getDrawable();
+
+        if (drawable == null) {
+            return;
+        }
+
+        if (getWidth() == 0 || getHeight() == 0) {
+            return;
+        }
+        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+
+        int w = getWidth(), h = getHeight();
+
+        Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
+        canvas.drawBitmap(roundBitmap, 0, 0, null);
+
     }
 }

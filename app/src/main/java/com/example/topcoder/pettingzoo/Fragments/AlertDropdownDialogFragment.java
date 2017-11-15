@@ -24,6 +24,12 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
 
     AlertDropdownInterface callback;
 
+    public static AlertDropdownDialogFragment newInstance(AlertDropdownInterface callback) {
+        AlertDropdownDialogFragment fragment = new AlertDropdownDialogFragment();
+        fragment.callback = callback;
+        return fragment;
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -40,15 +46,9 @@ public class AlertDropdownDialogFragment extends DialogFragment implements View.
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
             window.setAttributes(windowParams);
         }
-    }
-
-    public static AlertDropdownDialogFragment newInstance(AlertDropdownInterface callback) {
-        AlertDropdownDialogFragment fragment = new AlertDropdownDialogFragment();
-        fragment.callback = callback;
-        return fragment;
     }
 
     @Override

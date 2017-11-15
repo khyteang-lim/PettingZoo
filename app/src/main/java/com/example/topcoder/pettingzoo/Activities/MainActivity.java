@@ -33,19 +33,15 @@ import com.example.topcoder.pettingzoo.R;
 public class MainActivity extends AppCompatActivity
         implements OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback, AlertDropdownDialogFragment.AlertDropdownInterface, AlertOptionsDialogFragment.OptionsSelectedItem {
 
+    private static final int FIXTURE_RESULT = 0;
     // Services
     AlertService alertService;
     ProductService productService;
     SettingsService settingsService;
-
     // Fragments
     AlertFragment alertFragment;
     ProductFragment productFragment;
-
     Fragment currentFragment = null;
-
-    private static final int FIXTURE_RESULT = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +69,12 @@ public class MainActivity extends AppCompatActivity
         // Make the Services
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         alertService = new AlertService(requestQueue);
+        alertService.ENDPOINT = getString(R.string.SERVER_IP) + alertService.ENDPOINT;
         productService = new ProductService(requestQueue);
+        productService.ENDPOINT = getString(R.string.SERVER_IP) + productService.ENDPOINT;
         settingsService = new SettingsService(requestQueue);
+        settingsService.ENDPOINT = getString(R.string.SERVER_IP) + settingsService.ENDPOINT;
+
 
         // Instantiate the fragment
         productFragment = ProductFragment.newInstance(productService, this);

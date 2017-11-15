@@ -19,10 +19,6 @@ import android.widget.TextView;
 
 import com.example.topcoder.pettingzoo.R;
 
-/**
- * Created by Limsanity on 11/13/17.
- */
-
 public class AlertOptionsDialogFragment extends DialogFragment implements View.OnClickListener {
     Context mContext;
     View panel;
@@ -49,7 +45,7 @@ public class AlertOptionsDialogFragment extends DialogFragment implements View.O
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
+            window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         }
     }
 
@@ -58,7 +54,7 @@ public class AlertOptionsDialogFragment extends DialogFragment implements View.O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.alert_three_dots_dialog_popup, container);
         view.setOnClickListener(this);
-        ((TextView)view.findViewById(R.id.alertSelectTV)).setText(title);
+        ((TextView) view.findViewById(R.id.alertSelectTV)).setText(title);
         panel = view.findViewById(R.id.panel);
         panel.setOnClickListener(this);
         // Popup animation for the menu
@@ -85,7 +81,7 @@ public class AlertOptionsDialogFragment extends DialogFragment implements View.O
             @Override
             public void run() {
                 AlertOptionsDialogFragment.this.dismiss();
-                if(view.getId() == R.id.panel) {
+                if (view.getId() == R.id.panel) {
                     callback.onEditItem();
                 }
             }
