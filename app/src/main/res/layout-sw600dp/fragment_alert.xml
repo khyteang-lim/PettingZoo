@@ -71,7 +71,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/alertHeader"
-            tools:listitem="@layout/desktop_alert_group_layout" />
+            tools:listitem="@layout/alert_group_layout" />
 
     </android.support.constraint.ConstraintLayout>
 

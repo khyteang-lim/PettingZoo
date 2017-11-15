@@ -38,6 +38,11 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     AlertCallback callback;
 
+    final String[] POSITION_STRING_MAP = {
+            "Past 2 hours",
+            "Last 5 days"
+    };
+
     public AlertFragment() {
         // Required empty public constructor
     }
@@ -163,6 +168,7 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
         @Override
         public void onBindViewHolder(AlertGroupHolder holder, int position) {
+            ((TextView)holder.itemView.findViewById(R.id.timeTV)).setText(POSITION_STRING_MAP[position]);
             RecyclerView list = holder.itemView.findViewById(R.id.alert_list);
             list.setAdapter(new AlertAdapter(holder.list.get(position)));
             LinearLayoutManager lm = new LinearLayoutManager(mContext);
@@ -196,7 +202,14 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
         }
 
         @Override
-        public void onBindViewHolder(final AlertHolder holder, int position) {
+        public void onBindViewHolder(final AlertHolder holder, final int position) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onAlertItemClick(list.get(holder.getAdapterPosition()));
+                }
+            });
+
             ((TextView) holder.itemView.findViewById(R.id.alertNameTV))
                     .setText(list.get(position).name);
             ((TextView) holder.itemView.findViewById(R.id.alertDescTV))
@@ -251,5 +264,6 @@ public class AlertFragment extends Fragment implements AlertService.OnGetAlerts 
 
     public interface AlertCallback {
         void onAlertOptions(AlertService.Alert alert);
+        void onAlertItemClick(AlertService.Alert alert);
     }
 }

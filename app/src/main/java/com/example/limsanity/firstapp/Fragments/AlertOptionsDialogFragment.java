@@ -15,8 +15,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.example.limsanity.firstapp.R;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Limsanity on 11/13/17.
@@ -57,6 +60,7 @@ public class AlertOptionsDialogFragment extends DialogFragment implements View.O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.alert_three_dots_dialog_popup, container);
         view.setOnClickListener(this);
+        ((TextView)view.findViewById(R.id.alertSelectTV)).setText(title);
         panel = view.findViewById(R.id.panel);
         panel.setOnClickListener(this);
         // Popup animation for the menu
