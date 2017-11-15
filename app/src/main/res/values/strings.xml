@@ -50,6 +50,8 @@
 
     <string name="password_required">Password Required</string>
 
+    <string name="desktop_alert_item_status">Ongoing</string>
+    <string name="desktop_alert_item_delivery">4135243</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
