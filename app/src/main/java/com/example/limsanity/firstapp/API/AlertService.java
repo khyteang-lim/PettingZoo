@@ -27,7 +27,7 @@ import java.util.Locale;
  */
 
 public class AlertService {
-    private static final String ENDPOINT = "http://192.168.1.7:3000/alerts";
+    private static final String ENDPOINT = "http://10.0.2.2:3000/alerts";
 
     private RequestQueue requestQueue;
 
