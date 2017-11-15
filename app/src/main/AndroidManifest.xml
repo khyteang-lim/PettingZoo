@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/title_activity_main"
@@ -31,13 +31,17 @@
             android:name=".Activities.ConnectedDevicesActivity"
             android:label="Connected Devices"
             android:theme="@style/BackActivity"
-            android:parentActivityName=".Activities.MainActivity"
-            ></activity>
-        <activity android:name=".Activities.FixtureActivity"
+            android:parentActivityName=".Activities.MainActivity" />
+        <activity
+            android:name=".Activities.AlertItemActivity"
+            android:label="Level 45 Power Core"
+            android:theme="@style/BackActivity"
+            android:parentActivityName=".Activities.MainActivity" />
+        <activity
+            android:name=".Activities.FixtureActivity"
             android:label="Connected Devices"
             android:theme="@style/BackActivity"
-            android:parentActivityName=".Activities.MainActivity"
-            ></activity>
+            android:parentActivityName=".Activities.MainActivity" />
     </application>
 
 </manifest>

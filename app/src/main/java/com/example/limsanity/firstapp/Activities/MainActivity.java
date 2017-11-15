@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -30,7 +31,7 @@ import com.example.limsanity.firstapp.R;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback, AlertDropdownDialogFragment.AlertDropdownInterface {
+        implements OnNavigationItemSelectedListener, ProductFragment.ProductFragmentInterface, View.OnClickListener, AlertFragment.AlertCallback, AlertDropdownDialogFragment.AlertDropdownInterface, AlertOptionsDialogFragment.OptionsSelectedItem {
 
     // Services
     AlertService alertService;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentTransaction.add(R.id.fragment_container, productFragment);
         fragmentTransaction.commit();
-        ((TextView)findViewById(R.id.title)).setText("Products");
+        ((TextView) findViewById(R.id.title)).setText(R.string.products);
 
         // Set the onclick for the top nav items
         findViewById(R.id.threeBotsIB).setOnClickListener(this);
@@ -106,29 +107,29 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.alerts) {
+        if (id == R.id.alerts) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            if(alertFragment != null && fragmentManager.findFragmentByTag(AlertFragment.class.getName()) != null) {
+            if (alertFragment != null && fragmentManager.findFragmentByTag(AlertFragment.class.getName()) != null) {
                 fragmentTransaction.remove(alertFragment);
             }
             alertFragment = AlertFragment.newInstance(alertService, this);
             currentFragment = alertFragment;
             fragmentTransaction.add(R.id.fragment_container, alertFragment);
             fragmentTransaction.commit();
-            ((TextView)findViewById(R.id.title)).setText("Alerts");
-        } else if(id == R.id.products){
+            ((TextView) findViewById(R.id.title)).setText(R.string.alerts);
+        } else if (id == R.id.products) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            if(productFragment != null && fragmentManager.findFragmentByTag(ProductFragment.class.getName()) != null) {
+            if (productFragment != null && fragmentManager.findFragmentByTag(ProductFragment.class.getName()) != null) {
                 fragmentTransaction.remove(productFragment);
             }
             productFragment = ProductFragment.newInstance(productService, this);
             currentFragment = productFragment;
             fragmentTransaction.add(R.id.fragment_container, productFragment);
             fragmentTransaction.commit();
-            ((TextView)findViewById(R.id.title)).setText("Products");
-        } else if(id == R.id.settings){
+            ((TextView) findViewById(R.id.title)).setText(R.string.products);
+        } else if (id == R.id.settings) {
 
         }
 
@@ -150,10 +151,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == FIXTURE_RESULT) {
-            if(resultCode == 0) {
+        if (requestCode == FIXTURE_RESULT) {
+            if (resultCode == 0) {
                 android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                EditMadeDialogFragment fragment = EditMadeDialogFragment.newInstance(data.getStringExtra("title"));
+                EditMadeDialogFragment fragment = EditMadeDialogFragment
+                        .newInstance(data.getStringExtra("title"));
                 fragment.show(fragmentManager, null);
             }
         }
@@ -161,12 +163,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.threeBotsIB) {
+        if (view.getId() == R.id.threeBotsIB) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            if(currentFragment.getClass() == ProductFragment.class) {
+            if (currentFragment.getClass() == ProductFragment.class) {
                 UserSettingsDialogFragment settingsDialog = new UserSettingsDialogFragment();
                 settingsDialog.show(fragmentManager, null);
-            } else if(currentFragment.getClass() == AlertFragment.class) {
+            } else if (currentFragment.getClass() == AlertFragment.class) {
                 AlertDropdownDialogFragment settingsDialog = AlertDropdownDialogFragment.newInstance(this);
                 settingsDialog.show(fragmentManager, null);
             }
@@ -177,13 +179,27 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onAlertOptions(AlertService.Alert alert) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        AlertOptionsDialogFragment dialog = new AlertOptionsDialogFragment();
+        AlertOptionsDialogFragment dialog = AlertOptionsDialogFragment
+                .newInstance(alert.name + getString(R.string.selected), this);
         dialog.show(fragmentManager, null);
+    }
+
+    @Override
+    public void onAlertItemClick(AlertService.Alert alert) {
+        Intent intent = new Intent(this, AlertItemActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onClickConnectedDevices() {
         Intent intent = new Intent(this, ConnectedDevicesActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onEditItem() {
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        EditMadeDialogFragment fragment = EditMadeDialogFragment.newInstance(getString(R.string.items_updated));
+        fragment.show(fragmentManager, null);
     }
 }
