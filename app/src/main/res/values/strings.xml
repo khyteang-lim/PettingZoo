@@ -46,6 +46,10 @@
     <string name="fixture_edited_popup_dismiss">DISMISS</string>
     <string name="fragment_alert_select_all">Select All</string>
 
+    <string name="email_required">Email Required</string>
+
+    <string name="password_required">Password Required</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

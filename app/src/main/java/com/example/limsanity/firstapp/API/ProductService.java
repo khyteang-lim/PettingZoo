@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 public class ProductService {
-    private static final String ENDPOINT = "http://:3000/products";
+    private static final String ENDPOINT = "http://192.168.29.212:3000/products";
 
     private RequestQueue requestQueue;
 

@@ -1,6 +1,7 @@
 package com.example.limsanity.firstapp.Activities;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,11 +25,29 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.submitBtn) void submitLogin(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
+        ConstraintLayout errorUsernameConstraint = findViewById(R.id.enterUsernameError);
+        ConstraintLayout errorPasswordConstraint = findViewById(R.id.enterPasswordError);
+        errorUsernameConstraint.setVisibility(View.INVISIBLE);
+        errorPasswordConstraint.setVisibility(View.INVISIBLE);
         EditText username = findViewById(R.id.usernameTV);
         EditText password = findViewById(R.id.passwordTV);
-        String message = username.getText().toString();
-        intent.putExtra(Intent.EXTRA_TEXT, message);
-        startActivity(intent);
+        if ((username.getText() != null && username.getText().length() > 0)
+                && (password.getText() != null && password.getText().length() > 0)){
+            Intent intent = new Intent(this, MainActivity.class);
+            String message = username.getText().toString();
+            intent.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(intent);
+        }
+        else {
+            if (!(username.getText() != null && username.getText().length() > 0))
+            {
+                errorUsernameConstraint.setVisibility(View.VISIBLE);
+            }
+            if (!(password.getText() != null && password.getText().length() > 0))
+            {
+                errorPasswordConstraint.setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 }

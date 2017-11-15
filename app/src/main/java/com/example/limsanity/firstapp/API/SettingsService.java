@@ -32,7 +32,7 @@ import java.util.List;
  */
 
 public class SettingsService {
-    private static final String ENDPOINT = "http://:3000/settings";
+    private static final String ENDPOINT = "http://192.168.29.212:3000/settings";
 
     private RequestQueue requestQueue;
 

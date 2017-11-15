@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/holo_blue_dark"
     >
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -14,6 +15,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="400dp"
+        android:background="@drawable/border"
         >
 
         <ImageView
@@ -36,6 +39,33 @@
             app:layout_constraintTop_toBottomOf="@id/logoIV"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterUsernameError"
+            app:layout_constraintLeft_toLeftOf="@+id/usernameTV"
+            app:layout_constraintRight_toRightOf="@+id/usernameTV"
+            app:layout_constraintTop_toBottomOf="@+id/usernameTV"
+            app:layout_constraintBottom_toTopOf="@+id/passwordTV"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="10dp"
+                android:text="@string/email_required"
+                android:textColor="@android:color/holo_red_dark"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_report_problem_red_24dp"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
 
         <EditText
             android:id="@+id/passwordTV"
@@ -48,6 +78,33 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/usernameTV"
             android:layout_marginTop="10dp" />
+
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterPasswordError"
+            app:layout_constraintLeft_toLeftOf="@+id/usernameTV"
+            app:layout_constraintRight_toRightOf="@+id/usernameTV"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTV"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="10dp"
+                android:text="@string/password_required"
+                android:textColor="@android:color/holo_red_dark"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_report_problem_red_24dp"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
 
         <CheckBox
             android:id="@+id/rememberCB"
