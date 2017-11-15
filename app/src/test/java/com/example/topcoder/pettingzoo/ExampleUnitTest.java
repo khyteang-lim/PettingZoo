@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp;
+package com.example.topcoder.pettingzoo;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,17 +17,23 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
-public class EditMadeDialogFragment extends DialogFragment implements View.OnClickListener {
+/**
+ * Created by Limsanity on 11/13/17.
+ */
+
+public class AlertOptionsDialogFragment extends DialogFragment implements View.OnClickListener {
     Context mContext;
     View panel;
 
     String title;
+    OptionsSelectedItem callback;
 
-    public static EditMadeDialogFragment newInstance(String title) {
-        EditMadeDialogFragment instance = new EditMadeDialogFragment();
+    public static AlertOptionsDialogFragment newInstance(String title, OptionsSelectedItem callback) {
+        AlertOptionsDialogFragment instance = new AlertOptionsDialogFragment();
         instance.title = title;
+        instance.callback = callback;
         return instance;
     }
 
@@ -50,13 +56,11 @@ public class EditMadeDialogFragment extends DialogFragment implements View.OnCli
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fixture_edited_popup, container);
+        View view = inflater.inflate(R.layout.alert_three_dots_dialog_popup, container);
         view.setOnClickListener(this);
+        ((TextView)view.findViewById(R.id.alertSelectTV)).setText(title);
         panel = view.findViewById(R.id.panel);
-
-        ((TextView)view.findViewById(R.id.editMadeTV)).setText(title);
-        view.findViewById(R.id.dismissBtn).setOnClickListener(this);
-
+        panel.setOnClickListener(this);
         // Popup animation for the menu
         Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_up);
         popupAnimation.setDuration(100);
@@ -71,7 +75,7 @@ public class EditMadeDialogFragment extends DialogFragment implements View.OnCli
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         // Popup animation for the menu
         Animation popupAnimation = AnimationUtils.loadAnimation(mContext, R.anim.slide_down);
         popupAnimation.setDuration(100);
@@ -80,8 +84,10 @@ public class EditMadeDialogFragment extends DialogFragment implements View.OnCli
         panel.postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                EditMadeDialogFragment.this.dismiss();
+                AlertOptionsDialogFragment.this.dismiss();
+                if(view.getId() == R.id.panel) {
+                    callback.onEditItem();
+                }
             }
         }, 100);
     }

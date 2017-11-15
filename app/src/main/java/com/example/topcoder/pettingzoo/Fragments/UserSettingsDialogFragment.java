@@ -1,11 +1,9 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,11 +11,10 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
 public class UserSettingsDialogFragment extends DialogFragment implements View.OnClickListener {
     Context mContext;

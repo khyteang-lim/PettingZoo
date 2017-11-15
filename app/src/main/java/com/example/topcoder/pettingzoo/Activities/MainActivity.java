@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Activities;
+package com.example.topcoder.pettingzoo.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,16 +18,16 @@ import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.limsanity.firstapp.API.AlertService;
-import com.example.limsanity.firstapp.API.ProductService;
-import com.example.limsanity.firstapp.API.SettingsService;
-import com.example.limsanity.firstapp.Fragments.AlertDropdownDialogFragment;
-import com.example.limsanity.firstapp.Fragments.AlertFragment;
-import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
-import com.example.limsanity.firstapp.Fragments.EditMadeDialogFragment;
-import com.example.limsanity.firstapp.Fragments.ProductFragment;
-import com.example.limsanity.firstapp.Fragments.UserSettingsDialogFragment;
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.API.AlertService;
+import com.example.topcoder.pettingzoo.API.ProductService;
+import com.example.topcoder.pettingzoo.API.SettingsService;
+import com.example.topcoder.pettingzoo.Fragments.AlertDropdownDialogFragment;
+import com.example.topcoder.pettingzoo.Fragments.AlertFragment;
+import com.example.topcoder.pettingzoo.Fragments.AlertOptionsDialogFragment;
+import com.example.topcoder.pettingzoo.Fragments.EditMadeDialogFragment;
+import com.example.topcoder.pettingzoo.Fragments.ProductFragment;
+import com.example.topcoder.pettingzoo.Fragments.UserSettingsDialogFragment;
+import com.example.topcoder.pettingzoo.R;
 
 
 public class MainActivity extends AppCompatActivity
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setVisibility(View.VISIBLE);

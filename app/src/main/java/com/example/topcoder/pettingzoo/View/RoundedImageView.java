@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.View;
+package com.example.topcoder.pettingzoo.View;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,7 +11,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * Taken from https://gist.github.com/melanke/7158342

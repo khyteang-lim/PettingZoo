@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
 /**
  * Created by Limsanity on 11/13/17.

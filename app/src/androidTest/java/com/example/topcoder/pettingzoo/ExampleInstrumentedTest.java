@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp;
+package com.example.topcoder.pettingzoo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

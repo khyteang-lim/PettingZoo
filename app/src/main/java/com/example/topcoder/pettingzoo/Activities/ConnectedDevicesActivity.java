@@ -1,9 +1,9 @@
-package com.example.limsanity.firstapp.Activities;
+package com.example.topcoder.pettingzoo.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
 public class ConnectedDevicesActivity extends AppCompatActivity {
 

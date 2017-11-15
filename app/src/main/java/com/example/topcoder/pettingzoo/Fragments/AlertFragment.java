@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.limsanity.firstapp.API.AlertService;
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.API.AlertService;
+import com.example.topcoder.pettingzoo.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
 public class AlertDropdownDialogFragment extends DialogFragment implements View.OnClickListener {
     Context mContext;

@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Fragments;
+package com.example.topcoder.pettingzoo.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.example.limsanity.firstapp.API.ProductService;
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.API.ProductService;
+import com.example.topcoder.pettingzoo.R;
 
 import java.util.ArrayList;
 import java.util.List;

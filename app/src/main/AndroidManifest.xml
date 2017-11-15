@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.limsanity.firstapp">
+    package="com.example.topcoder.pettingzoo">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,27 +21,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.ConnectedDevicesActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.ConnectedDevicesActivity"
             android:label="Connected Devices"
             android:theme="@style/BackActivity"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:parentActivityName="com.example.topcoder.com.topcoder.pettingzoo.Activities.MainActivity" />
         <activity
-            android:name=".Activities.AlertItemActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.AlertItemActivity"
             android:label="Level 45 Power Core"
             android:theme="@style/BackActivity"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:parentActivityName="com.example.topcoder.com.topcoder.pettingzoo.Activities.MainActivity" />
         <activity
-            android:name=".Activities.FixtureActivity"
+            android:name="com.example.topcoder.com.topcoder.pettingzoo.Activities.FixtureActivity"
             android:label="Connected Devices"
             android:theme="@style/BackActivity"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:parentActivityName="com.example.topcoder.com.topcoder.pettingzoo.Activities.MainActivity" />
     </application>
 
 </manifest>

@@ -88,10 +88,9 @@
         android:id="@+id/desktopAlertSideGraphFragmentCL"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintLeft_toRightOf="@id/guideline"
-        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/gray_border"
-        >
+        app:layout_constraintLeft_toRightOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent">
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -110,11 +109,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Second Label"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="0dp"
@@ -122,12 +121,11 @@
                 android:layout_marginTop="5dp"
                 android:paddingBottom="20dp"
                 android:text="Above 87.5 amperes"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/secondLabelTV"
-                app:layout_constraintTop_toBottomOf="@id/secondLabelTV"
-                android:textColor="@android:color/white"
-                />
+                app:layout_constraintTop_toBottomOf="@id/secondLabelTV" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -147,11 +145,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Time:"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="0dp"
@@ -159,11 +157,11 @@
                 android:layout_marginTop="5dp"
                 android:paddingBottom="20dp"
                 android:text="2017-08-22, 02:39:04 PM"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/alertTimeTV"
-                app:layout_constraintTop_toBottomOf="@id/alertTimeTV"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toBottomOf="@id/alertTimeTV" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -184,11 +182,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Acknowledge Alert:"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="0dp"
@@ -196,11 +194,11 @@
                 android:layout_marginTop="5dp"
                 android:paddingBottom="20dp"
                 android:text="No"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/ackAlertTV"
-                app:layout_constraintTop_toBottomOf="@id/ackAlertTV"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toBottomOf="@id/ackAlertTV" />
 
             <Switch
                 android:id="@+id/ackAlertSwitch"
@@ -226,20 +224,19 @@
             android:src="@drawable/dark_chart_3x"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ackAlertCL"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/ackAlertCL" />
 
         <ImageView
             android:id="@+id/alertYellowMetric"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/image_view_desc"
+            android:scaleType="fitXY"
             android:src="@drawable/dark_card_metric_yellow"
-            app:layout_constraintTop_toBottomOf="@id/alertMetric"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/alertBlueMetric"
-            android:contentDescription="@string/image_view_desc"/>
+            app:layout_constraintTop_toBottomOf="@id/alertMetric" />
 
         <ImageView
             android:id="@+id/alertBlueMetric"
@@ -251,7 +248,7 @@
             android:src="@drawable/dark_card_metric_blue"
             app:layout_constraintLeft_toRightOf="@id/alertYellowMetric"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/alertMetric"/>
+            app:layout_constraintTop_toBottomOf="@id/alertMetric" />
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -272,21 +269,21 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/activity_fixture_textview_detail"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@android:color/white"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/fixureDetailSetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
+                android:contentDescription="@string/activity_fixture_image_view_desc"
                 android:src="@drawable/ic_settings_black_24dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/detailTV"
-                android:contentDescription="@string/activity_fixture_image_view_desc"/>
+                app:layout_constraintTop_toTopOf="@+id/detailTV" />
 
             <LinearLayout
                 android:id="@+id/createdOnLL"
@@ -302,16 +299,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_on"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_on_date"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -329,16 +326,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_by"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_by_user"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -354,16 +351,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_last_modified_on"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_last_modified_on_date"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -380,16 +377,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_last_modified_by"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_last_modified_by_date"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -406,16 +403,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_on"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_on_date"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -432,16 +429,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_by"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_fixture_textview_created_by_user"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 

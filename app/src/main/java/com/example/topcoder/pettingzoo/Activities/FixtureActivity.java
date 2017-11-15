@@ -1,12 +1,12 @@
-package com.example.limsanity.firstapp.Activities;
+package com.example.topcoder.pettingzoo.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.limsanity.firstapp.Fragments.AlertOptionsDialogFragment;
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.Fragments.AlertOptionsDialogFragment;
+import com.example.topcoder.pettingzoo.R;
 
 public class FixtureActivity extends AppCompatActivity {
     @Override

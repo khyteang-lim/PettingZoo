@@ -1,4 +1,4 @@
-package com.example.limsanity.firstapp.Activities;
+package com.example.topcoder.pettingzoo.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.limsanity.firstapp.R;
+import com.example.topcoder.pettingzoo.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
